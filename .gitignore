@@ -1,0 +1,4 @@
+mocking_snakes/.env
+mocking_snakes/mocking_snakes.egg-info
+mocking_snakes/build
+*.pyc

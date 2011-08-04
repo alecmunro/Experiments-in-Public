@@ -1,0 +1,7 @@
+setup.py
+src/mocking_snakes/__init__.py
+src/mocking_snakes.egg-info/PKG-INFO
+src/mocking_snakes.egg-info/SOURCES.txt
+src/mocking_snakes.egg-info/dependency_links.txt
+src/mocking_snakes.egg-info/requires.txt
+src/mocking_snakes.egg-info/top_level.txt
