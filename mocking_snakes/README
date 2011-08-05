@@ -1,1 +1,8 @@
 Experiments with different python mock object libraries.
+
+The application to be tested is a caching service. 
+It periodically connects to a another machine, through a client, downloads the 
+data to be cached, and writes it to a file.
+
+So, how will we divide that functionality up? Maybe one main loop, that calls 
+methods to sync the cache, and then write it?
