@@ -15,5 +15,5 @@ setup(name='mocking_snakes',
       url='http://http://alecmunro.blogspot.com/',
       package_dir = {'': 'src'},
       packages=['mocking_snakes'],
-      install_requires=["mocker", "flexmock", "fudge"]
+      install_requires=["mocker", "flexmock", "fudge", "mock"]
      )
