@@ -34,5 +34,9 @@ def merge_sort(items):
 
 if __name__ == "__main__":
     from timeit import Timer
-    t = Timer('merge_sort("eqionvnmvjkclwjklcpwaxctwa")', "from __main__ import merge_sort, merge")
-    print(t.timeit(number=10000))
+    t = Timer('merge_sort("eqionvnmvjkclwjklcpwaxctwa")', 
+              "from __main__ import merge_sort, merge")
+    my_time = t.timeit(number=10000)
+    t_2 = Timer('sorted(list("eqionvnmvjkclwjklcpwaxctwa"))')
+    py_time = t_2.timeit(number=10000)
+    print("My sort takes {0} times as long.".format(my_time / py_time))
