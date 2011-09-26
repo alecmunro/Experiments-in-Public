@@ -1,5 +1,5 @@
 if (typeof pwc == 'undefined'){
-  pwc = new Object();
+  pwc = {};
 };
 
 pwc.Index = function(create_request_root, display_response_root){

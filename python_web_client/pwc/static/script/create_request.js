@@ -1,5 +1,5 @@
 if (typeof pwc == 'undefined'){
-  pwc = new Object();
+  pwc = {};
 };
 
 pwc.CreateRequest = function(root_selector, get_callback){

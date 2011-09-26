@@ -1,5 +1,5 @@
 if (typeof pwc == 'undefined'){
-  pwc = new Object();
+  pwc = {};
 };
 
 pwc.DisplayResponse = function(root_selector){
