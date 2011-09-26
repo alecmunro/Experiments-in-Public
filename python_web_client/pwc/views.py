@@ -7,6 +7,10 @@ import requests
 
 URL_KEY = "url"
 
+def index(request):
+    return {'project':'Python Web Client'}
+
 def make_request(request):
     response = requests.get(request.params[URL_KEY])
-    return (response.status_code, response.headers)
+    #I could also write a json convertor for Response objects?
+    return {"status": response.status_code, "headers": response.headers}

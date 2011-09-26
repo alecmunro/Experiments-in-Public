@@ -19,10 +19,10 @@ class TestViews(TestCase):
     @mock.patch("pwc.views.requests")
     def test_make_request(self, m_requests):
         request = testing.DummyRequest({mut.URL_KEY: SAMPLE_URL})
-        m_response = mock.Mock
+        m_response = mock.Mock()
         m_requests.get.return_value = m_response
         m_response.status_code = SAMPLE_STATUS
         m_response.headers = SAMPLE_HEADERS
-        self.assertEqual((SAMPLE_STATUS, SAMPLE_HEADERS), 
+        self.assertEqual({"status": SAMPLE_STATUS, "headers": SAMPLE_HEADERS}, 
                          mut.make_request(request))
         m_requests.get.assert_called_with(SAMPLE_URL)

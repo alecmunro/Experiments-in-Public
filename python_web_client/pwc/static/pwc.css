@@ -1,0 +1,34 @@
+body {
+  background-color: #333;
+  padding: 12px;
+  font-family: arial;
+}
+  
+#pwc {
+  background-color: #FFFFCC;
+  border: 4px solid #CCFF99;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+#create_request, #display_response {
+  width: 48%;
+  margin: 10px;
+}
+
+#display_response {
+  display: none;
+}
+
+.widget {
+  background-color: #CCFFCC;
+  display: inline-block;
+  border: 2px solid #CCCC99;
+  border-radius: 4px;
+  float: left;
+}
+
+.widget h3{
+  text-align: center;
+  margin: 0px;
+}

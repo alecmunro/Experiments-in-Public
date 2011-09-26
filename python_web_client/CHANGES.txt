@@ -1,0 +1,5 @@
+0.1.dev1
+---
+
+- Initial implementation of Python Web Client functionality, as originally suggested in the comments here: http://alecmunro.blogspot.com/2011/09/let-me-build-you-web-appservice.html
+- Functionality is extremely basic, allowing entering a URL, and viewing the response status and headers 
