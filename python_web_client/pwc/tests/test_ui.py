@@ -12,6 +12,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 from pwc import main
 from pwc.tests.echo_server import EchoServer, DEFAULT_ADDRESS
+from pwc.tests.run_server import run_server, kill_server
 
 SAMPLE_STATUS = 302
 SAMPLE_HEADERS = {"heya": "hoya"}
@@ -20,12 +21,11 @@ SAMPLE_BODY = "Jimmy Hoffa's"
 class UITests(TestCase):
     
     def setUp(self):
-        self.app = subprocess.Popen("paster serve ..\..\development.ini --pid-file=my.pid")
-        time.sleep(1)#Waiting for PID
-        self.app_pid = open("my.pid").read()
+        self.app_pid = run_server("..\..\development.ini")#TODO: Windows specific
         self.test_server = EchoServer(DEFAULT_ADDRESS)
         self.test_server.set_echo(SAMPLE_STATUS, SAMPLE_HEADERS, SAMPLE_BODY)
         self.test_server.threaded_serve()
+        
 
     def test_something(self):
         driver = webdriver.Firefox()
@@ -49,6 +49,5 @@ class UITests(TestCase):
         
         
     def tearDown(self):
-        #I would really like a better way to handle this.
-        subprocess.Popen("taskkill /F /PID {0}".format(self.app_pid))
+        kill_server(self.app_pid)
         self.test_server.threaded_shutdown()

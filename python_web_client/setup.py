@@ -12,6 +12,7 @@ requires = [
     'pyramid_tm',
     'pyramid_debugtoolbar',
     'mako',
+    'sphinx',#docs
     'mock',#testing
     'selenium'#testing
     ]
@@ -26,8 +27,8 @@ setup(name='pwc',
         "Topic :: Internet :: WWW/HTTP",
         "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
         ],
-      author='',
-      author_email='',
+      author='Alec Munro',
+      author_email='alecmunro@gmail.com',
       url='',
       keywords='web pylons pyramid',
       packages=find_packages(),
