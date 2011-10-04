@@ -3,6 +3,8 @@ Created on 2011-09-20
 
 @author: Alec
 '''
+import time
+
 import requests
 
 URL_KEY = "url"
@@ -15,5 +17,6 @@ def make_request(request):
     It will make a GET request to that URL, and return the status code and 
     headers from the response."""
     response = requests.get(request.params[URL_KEY])
+    time.sleep(0.5)
     #I could also write a json convertor for Response objects?
     return {"status": response.status_code, "headers": response.headers}

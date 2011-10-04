@@ -8,13 +8,16 @@ README = open(os.path.join(here, 'README.txt')).read()
 CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 
 requires = [
+    'zope.interface>=3.8.0',#Required to avoid dependency mismatch
     'pyramid',
     'pyramid_tm',
     'pyramid_debugtoolbar',
+    'requests',
     'mako',
     'sphinx',#docs
     'mock',#testing
-    'selenium'#testing
+    'selenium',#testing
+    'nose'#testing
     ]
 
 setup(name='pwc',

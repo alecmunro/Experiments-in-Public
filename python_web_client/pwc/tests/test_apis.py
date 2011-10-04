@@ -7,34 +7,28 @@ import unittest
 
 from pyramid import testing
 
-from pwc.tests.echo_server import EchoServer, DEFAULT_ADDRESS
 from pwc import views as mut
 
-SAMPLE_URL = "http://{0}:{1}/anything".format(*DEFAULT_ADDRESS)
-SAMPLE_STATUS = 302
-SAMPLE_HEADERS = {"heya": "hoya"}
-SAMPLE_BODY = "Jimmy Hoffa's"
+from . import SAMPLE_URL, SAMPLE_STATUS, SAMPLE_HEADERS, SAMPLE_BODY
 
 class APITests(unittest.TestCase):
     
     def setUp(self):
         self.config = testing.setUp()
-        self.test_server = EchoServer(DEFAULT_ADDRESS)
-        self.test_server.set_echo(SAMPLE_STATUS, SAMPLE_HEADERS, SAMPLE_BODY)
-        self.test_server.threaded_serve()
         
         
     def tearDown(self):
         """ Clear out the application registry """
         testing.tearDown()
-        self.test_server.threaded_shutdown()
         
 
-    def test_something(self):
+    def test_make_request(self):
         """Do it!"""
         request = testing.DummyRequest(params={"url": SAMPLE_URL})
         
-        status, headers = mut.make_request(request)
+        response = mut.make_request(request)
+        status = response["status"]
+        headers = response["headers"]
         self.assertEquals(SAMPLE_STATUS, status)
         for key, value in SAMPLE_HEADERS.items():
             self.assert_(key in headers)

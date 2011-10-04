@@ -4,6 +4,7 @@ Created on 2011-09-23
 @author: Alec
 '''
 import time
+import os
 from unittest import TestCase
 import subprocess
 
@@ -11,23 +12,19 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 
 from pwc import main
-from pwc.tests.echo_server import EchoServer, DEFAULT_ADDRESS
 from pwc.tests.run_server import run_server, kill_server
 
-SAMPLE_STATUS = 302
-SAMPLE_HEADERS = {"heya": "hoya"}
-SAMPLE_BODY = "Jimmy Hoffa's"
+INI_FILE = os.path.normpath(os.path.join(os.path.dirname(__file__), "..", "..", "development.ini"))
+
+from . import SAMPLE_URL, SAMPLE_STATUS, SAMPLE_HEADERS, SAMPLE_BODY
 
 class UITests(TestCase):
     
     def setUp(self):
-        self.app_pid = run_server("..\..\development.ini")#TODO: Windows specific
-        self.test_server = EchoServer(DEFAULT_ADDRESS)
-        self.test_server.set_echo(SAMPLE_STATUS, SAMPLE_HEADERS, SAMPLE_BODY)
-        self.test_server.threaded_serve()
+        self.app_pid = run_server(INI_FILE)
         
 
-    def test_something(self):
+    def test_request_form(self):
         driver = webdriver.Firefox()
         driver.get("http://127.0.0.1:6543")
         try:
@@ -36,7 +33,7 @@ class UITests(TestCase):
             self.assertEquals(u'Welcome to the Python Web Client!', 
                               driver.title)
             url_box = driver.find_element_by_id("url")
-            url_box.send_keys("http://{0}:{1}/".format(*DEFAULT_ADDRESS))
+            url_box.send_keys(SAMPLE_URL)
             submit = driver.find_element_by_id("submit_request")
             submit.click()
             time.sleep(1)
@@ -50,4 +47,3 @@ class UITests(TestCase):
         
     def tearDown(self):
         kill_server(self.app_pid)
-        self.test_server.threaded_shutdown()

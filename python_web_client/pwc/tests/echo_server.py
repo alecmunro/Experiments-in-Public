@@ -3,6 +3,7 @@ Created on 2011-09-22
 
 @author: Alec
 '''
+import time
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 from SocketServer import ThreadingMixIn
 from threading import Thread
@@ -11,7 +12,7 @@ from threading import Thread
 class ThreadingHTTPServer(ThreadingMixIn, HTTPServer):
     pass
 
-DEFAULT_ADDRESS = ("127.0.0.1", 8080) 
+DEFAULT_ADDRESS = ("127.0.0.1", 18080) 
 DEFAULT_STATUS = 200
 DEFAULT_HEADERS = {"Content-type": "text/html"}
 DEFAULT_BODY = "A-OK!"
