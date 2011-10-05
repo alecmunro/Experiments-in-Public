@@ -39,6 +39,8 @@ class UITests(TestCase):
             time.sleep(1)
             self.assertEqual(SAMPLE_STATUS, 
                          int(driver.find_element_by_class_name("status").text))
+            self.assertEqual(SAMPLE_BODY, 
+                driver.find_element_by_class_name("body").get_attribute("value"))
             for name, value in SAMPLE_HEADERS.items():
                 self.assertEqual(value, driver.find_element_by_name(name).text)
         finally:

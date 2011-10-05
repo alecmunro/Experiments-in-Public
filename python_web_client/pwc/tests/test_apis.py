@@ -29,7 +29,9 @@ class APITests(unittest.TestCase):
         response = mut.make_request(request)
         status = response["status"]
         headers = response["headers"]
+        body = response["body"]
         self.assertEquals(SAMPLE_STATUS, status)
+        self.assertEquals(SAMPLE_BODY, body)
         for key, value in SAMPLE_HEADERS.items():
             self.assert_(key in headers)
             self.assertEquals(value, headers[key])

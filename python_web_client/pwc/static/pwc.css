@@ -32,3 +32,8 @@ body {
   text-align: center;
   margin: 0px;
 }
+
+.body {
+  width: 98%;
+  height: 200px;
+}

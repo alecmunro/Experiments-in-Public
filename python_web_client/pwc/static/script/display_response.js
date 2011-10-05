@@ -9,6 +9,7 @@ pwc.DisplayResponse = function(root_selector){
 
 pwc.DisplayResponse.prototype.process_response = function(response){
 	this.root.find("em.status").text(response.status);
+	this.root.find("textarea.body").val(response.body);
 	var headers = this.root.find("ul.headers").empty();
 	for (var name in response.headers){
 		headers.append("<li><strong>" + name + "</strong>: <span name='" + name + "'>" + response.headers[name] + "</span></li>");

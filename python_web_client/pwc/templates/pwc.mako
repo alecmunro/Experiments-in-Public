@@ -27,6 +27,7 @@ $(document).ready(function(){
 	      <h3>Response</h3>
 	      <strong>Status</strong>:<em class="status"></em><br/>
 	      <ul class="headers"></ul>
+	      <textarea class="body"></textarea>
 	    </div>
 	  </div>
 	  <div style="clear:both;">&nbsp;</div>
