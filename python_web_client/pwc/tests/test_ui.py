@@ -14,7 +14,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from pwc import main
 from pwc.tests.run_server import run_server, kill_server
 
-INI_FILE = os.path.normpath(os.path.join(os.path.dirname(__file__), "..", "..", "development.ini"))
+INI_FILE = os.path.normpath(os.path.join(os.path.dirname(__file__), "..", "..", 
+                                         "development.ini"))
 
 from . import SAMPLE_URL, SAMPLE_STATUS, SAMPLE_HEADERS, SAMPLE_BODY
 

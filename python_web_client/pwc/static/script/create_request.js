@@ -6,14 +6,18 @@ pwc.CreateRequest = function(root_selector, get_callback){
 	this.root_selector = root_selector;
 	this.root = $(root_selector);
 	this.get_callback = get_callback;
+	this.parameter_list = new pwc.ParameterList(root_selector + " #parameters");
 };
 
 pwc.CreateRequest.prototype.setup_events = function(){
 	var _this = this;
 	$(this.root_selector + " #submit_request").live("click", function(){
 		var url = _this.root.find("#url").val();
-		var method = _this.root.find("#method").val()
-		var response_get = $.getJSON("/request", {"url": url, "method": method});
+		var method = _this.root.find("#method").val();
+		var parameters = $.toJSON(_this.parameter_list.parameters);
+		var response_get = $.post("/request", {"url": url, "method": method,
+			"parameters": parameters});
 		_this.get_callback(response_get);
 	});
+	this.parameter_list.setup_events();
 };

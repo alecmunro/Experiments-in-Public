@@ -4,11 +4,13 @@ Created on 2011-09-20
 @author: Alec
 '''
 import time
+import json
 
 import requests
 
 URL_KEY = "url"
 METHOD_KEY = "method"
+PARAMETERS_KEY = "parameters"
 CONTENT_TYPE_HEADER = "content-type"
 CHARSET_KEY = "charset="
 
@@ -30,10 +32,13 @@ def make_request(request):
     http method type, it will make that type of request to the 'url'. If 
     'method' is not provided, GET will be used to make the request.
     It will  return the status code and headers from the response."""
+    method_args = {"url": request.params[URL_KEY]}
+    if PARAMETERS_KEY in request.params:
+        method_args["params"] = json.loads(request.params[PARAMETERS_KEY])
     method = request.params.get(METHOD_KEY, DEFAULT_METHOD)
     if not method in VALID_METHODS:
         raise KeyError(INVALID_METHOD)
-    response = getattr(requests, method.lower())(request.params[URL_KEY])
+    response = getattr(requests, method.lower())(**method_args)
     try:
         charset = response.headers[CONTENT_TYPE_HEADER].split(CHARSET_KEY)[1]
         body = response.content.decode(charset)
