@@ -20,6 +20,11 @@ $(document).ready(function(){
 	  <div id="controls">
 	    <div class="widget" id="create_request">
 	      <h3>Enter Request Details</h3>
+	      <select id="method">
+	      % for method in methods:
+	        <option>${method}</option>
+	      % endfor
+	      </select>
 	      <input id="url"/>
 	      <button id="submit_request">Submit Request</button>
 	    </div>

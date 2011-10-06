@@ -12,7 +12,8 @@ pwc.CreateRequest.prototype.setup_events = function(){
 	var _this = this;
 	$(this.root_selector + " #submit_request").live("click", function(){
 		var url = _this.root.find("#url").val();
-		var response_get = $.getJSON("/request", {"url": url});
+		var method = _this.root.find("#method").val()
+		var response_get = $.getJSON("/request", {"url": url, "method": method});
 		_this.get_callback(response_get);
 	});
 };
