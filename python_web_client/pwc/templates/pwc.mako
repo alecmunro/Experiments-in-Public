@@ -1,12 +1,14 @@
 <html>
   <head>
     <title>Welcome to the ${project}!</title>
-    <link rel="stylesheet" href="static/pwc.css" />
+    <link rel="stylesheet" href="static/css/pwc.css" />
+    <link rel="stylesheet" href="static/css/sunny/jquery-ui-1.8.16.custom.css" />
     <script src="static/script/jquery-1.6.4.min.js"></script>
+    <script src="static/script/jquery-ui-1.8.16.custom.min.js"></script>
     <script src="static/script/jquery.json-2.3.min.js"></script>
     <script src="static/script/display_response.js"></script>
     <script src="static/script/create_request.js"></script>
-    <script src="static/script/parameter_list.js"></script>
+    <script src="static/script/item_list.js"></script>
     <script src="static/script/pwc.js"></script>
     <script>
 $(document).ready(function(){
@@ -20,6 +22,7 @@ $(document).ready(function(){
 	  <h1>${project}</h1>
 	  <p>The ${project} is a simple web service to assist in debugging and documenting HTTP APIs.</p>
 	  <div id="controls">
+	  
 	    <div class="widget" id="create_request">
 	      <h3>Enter Request Details</h3>
 	      <select id="method">
@@ -30,19 +33,39 @@ $(document).ready(function(){
 	      <input id="url"/>
 	      <button id="submit_request">Submit Request</button><br />
 	      <div id="parameters">
-	        <label for="parameter_name">Name</label>: <input class="parameter_name" name="parameter_name" />
-	        <label for="parameter_value">Value</label>: <input class="parameter_value" name="parameter_value"/>
-	        <button class="add_parameter">Add Parameter</button>
-	        <ul class="parameter_list"></ul>
+	        <h3>Request Parameters</h3>
+	        <label for="item_name">Name</label>: <input class="item_name" name="item_name" />
+	        <label for="item_value">Value</label>: <input class="item_value" name="item_value"/>
+	        <button class="add_item">Add</button>
+	        <ul class="item_list"></ul>
 	      </div>
-	      
+	      <div id="headers">
+	        <h3>Request Headers</h3>
+	        <label for="item_name">Name</label>: <input class="item_name" name="item_name" />
+	        <label for="item_value">Value</label>: <input class="item_value" name="item_value"/>
+	        <button class="add_item">Add</button>
+	        <ul class="item_list"></ul>
+	      </div>
 	    </div>
 	    <div class="widget" id="display_response">
 	      <h3>Response</h3>
 	      <strong>Status</strong>:<em class="status"></em><br/>
 	      <ul class="headers"></ul>
-	      <textarea class="body"></textarea>
+	      <div class="response_body">
+	        <ul>
+	          <li><a href="#body_plain">Plain</a></li>
+	          <li><a href="#body_html">HTML</a></li>
+	        </ul>
+	        <div id="body_plain">
+	          <textarea class="body"></textarea>
+	        </div>
+	        <div id="body_html">
+	          <p>Not Implemented.</p>
+	        <div>
+	      </div>
+	      
 	    </div>
+	    
 	  </div>
 	  <div style="clear:both;">&nbsp;</div>
     </div>

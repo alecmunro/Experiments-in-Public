@@ -13,7 +13,7 @@ METHOD_KEY = "method"
 PARAMETERS_KEY = "parameters"
 CONTENT_TYPE_HEADER = "content-type"
 CHARSET_KEY = "charset="
-
+HEADERS_KEY = "headers"
 #Errors
 INVALID_METHOD = "You have specified an invalid method." 
 
@@ -28,13 +28,24 @@ def index(request):
 
 def make_request(request):
     """Accepts a request object, which is expected to have a 'url' parameter.
+    
     If the request has a 'method' parameter, and that parameter matches a known
     http method type, it will make that type of request to the 'url'. If 
     'method' is not provided, GET will be used to make the request.
-    It will  return the status code and headers from the response."""
+    
+    If the request has a 'params' parameter, it will be treated as a 
+    json-encoded dictionary and used as the parameters for the new request.
+    
+    If the request has a 'headers' parameter, it will be treated as a 
+    json-encoded dictionary and used as the headers for the new request.
+    
+    Returns the status code, headers and body from the response, as a 
+    dictionary."""
     method_args = {"url": request.params[URL_KEY]}
     if PARAMETERS_KEY in request.params:
         method_args["params"] = json.loads(request.params[PARAMETERS_KEY])
+    if HEADERS_KEY in request.params:
+        method_args["headers"] = json.loads(request.params[HEADERS_KEY])
     method = request.params.get(METHOD_KEY, DEFAULT_METHOD)
     if not method in VALID_METHODS:
         raise KeyError(INVALID_METHOD)

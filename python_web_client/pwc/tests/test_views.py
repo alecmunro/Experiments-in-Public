@@ -16,6 +16,7 @@ SAMPLE_STATUS = 200
 SAMPLE_HEADERS = {"a": 1, "b": 2}
 SAMPLE_BODY = "Elvis'"
 SAMPLE_PARAMETERS = {"z": 26, "y": 25}
+SAMPLE_REQUEST_HEADERS = {"content-type": "boogiema"}
 SAMPLE_METHOD = "POST"
 INVALID_METHOD = "GHOST"
 
@@ -90,6 +91,20 @@ class TestViews(TestCase):
         self.assertEqual(response_dict, mut.make_request(request))
         m_requests.get.assert_called_with(url=SAMPLE_URL, 
                                           params=SAMPLE_PARAMETERS)
+        m_sleep.assert_called_with(mut.SECURITY_SLEEP)
+        
+        
+    @mock.patch("pwc.views.time.sleep")
+    @mock.patch("pwc.views.requests")
+    def test_make_request_headers(self, m_requests, m_sleep):
+        """Make a simple request with parameters."""
+        request = testing.DummyRequest({mut.URL_KEY: SAMPLE_URL, 
+                            mut.HEADERS_KEY: json.dumps(SAMPLE_REQUEST_HEADERS)})
+        m_response, response_dict = self.mock_response()
+        m_requests.get.return_value = m_response
+        self.assertEqual(response_dict, mut.make_request(request))
+        m_requests.get.assert_called_with(url=SAMPLE_URL, 
+                                          headers=SAMPLE_REQUEST_HEADERS)
         m_sleep.assert_called_with(mut.SECURITY_SLEEP)
         
     
