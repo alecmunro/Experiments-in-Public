@@ -30,21 +30,21 @@ $(document).ready(function(){
 	        <option>${method}</option>
 	      % endfor
 	      </select>
-	      <input id="url"/>
+	      <input id="url" size="60" value="http://" />
 	      <button id="submit_request">Submit Request</button><br />
-	      <div id="parameters">
-	        <h3>Request Parameters</h3>
+	      <div id="parameters" class="item_list_widget">
+	        <h4>Request Parameters</h4>
+ 	        <ul class="item_list"></ul>
 	        <label for="item_name">Name</label>: <input class="item_name" name="item_name" />
 	        <label for="item_value">Value</label>: <input class="item_value" name="item_value"/>
 	        <button class="add_item">Add</button>
-	        <ul class="item_list"></ul>
 	      </div>
-	      <div id="headers">
-	        <h3>Request Headers</h3>
+	      <div id="headers" class="item_list_widget">
+	        <h4>Request Headers</h4>
+	        <ul class="item_list"></ul>
 	        <label for="item_name">Name</label>: <input class="item_name" name="item_name" />
 	        <label for="item_value">Value</label>: <input class="item_value" name="item_value"/>
 	        <button class="add_item">Add</button>
-	        <ul class="item_list"></ul>
 	      </div>
 	    </div>
 	    <div class="widget" id="display_response">

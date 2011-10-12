@@ -37,3 +37,13 @@ body {
   width: 98%;
   height: 200px;
 }
+
+.item_list_widget {
+  border: 2px solid #FFFFCC;
+  border-radius: 4px;
+}
+
+.item_list_widget h4 {
+  margin: 0px;
+  background-color:#FFFFCC;
+}

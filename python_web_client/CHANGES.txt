@@ -3,6 +3,8 @@
 
 - Added display of response body
 - Added option to select request method
+- Added field to add parameters
+- Added field to add headers
 
 0.1
 -----

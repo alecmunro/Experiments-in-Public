@@ -29,8 +29,8 @@ pwc.ItemList.prototype.setup_events = function(){
 pwc.ItemList.prototype.render = function(){
 	this.item_list.empty();
 	for (var name in this.items){
-		this.item_list.append("<li><span class='name'>" + name + "</span>="
+		this.item_list.append("<li><button>Remove</button><span class='name'>" + name + "</span>="
 				+ this.items[name]
-		        + "<button>Remove</button></li>");
+		        + "</li>");
 	}
 };
